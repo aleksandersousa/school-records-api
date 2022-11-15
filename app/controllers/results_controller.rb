@@ -5,7 +5,6 @@ class ResultsController < ApplicationController
   # GET /results
   def index
     @results = Result.all
-    json_response(@results)
   end
 
   # GET /results/1

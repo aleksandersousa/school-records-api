@@ -18,7 +18,6 @@ class StudentsController < ApplicationController
   # GET /students/1/results
   def results
     @results = @student.results
-    json_response(@results)
   end
 
   # POST /students

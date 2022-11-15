@@ -4,7 +4,7 @@ AllCops:
   TargetRubyVersion: 3.0.0
   # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
   # to ignore them, so only the ones explicitly set in this file are enabled.
-  DisabledByDefault: true
+  NewCops: enable
   Exclude:
     - "bin/**/*"
     - "vendor/**/*"
@@ -21,6 +21,9 @@ Layout/EmptyLinesAroundClassBody:
 Style/FrozenStringLiteralComment:
   EnforcedStyle: always_true
   Enabled: false
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Enabled: true
 Style/Documentation:
   Enabled: false
 Layout/EmptyLineAfterMagicComment:

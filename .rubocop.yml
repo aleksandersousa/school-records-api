@@ -1,0 +1,43 @@
+require: rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.0.0
+  # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
+  # to ignore them, so only the ones explicitly set in this file are enabled.
+  DisabledByDefault: true
+  Exclude:
+    - "bin/**/*"
+    - "vendor/**/*"
+    - "db/**/*"
+    - "config/**/*"
+    - "script/**/*"
+    - "spec/rails_helper.rb"
+Rails:
+  Enabled: true
+Layout/LineLength:
+  Max: 120
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always_true
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+Lint/MissingCopEnableDirective:
+  Enabled: false
+Lint/AmbiguousAssignment:
+  Enabled: true
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: true
+Lint/AmbiguousRange:
+  Enabled: true
+Layout/LineEndStringConcatenationIndentation:
+  Enabled: false
+Layout/SpaceBeforeBrackets:
+  Enabled: true
+Lint/DeprecatedConstants:
+  Enabled: true
+Style/MethodDefParentheses:
+  Enabled: true

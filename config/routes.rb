@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get 'ping' => ->(_) { [200, {}, ['pong']] }
+  
+  scope '/', defaults: { format: :json } do
+    resources :type_of_results, only: %i[index show]
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_15_042705) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_15_153038) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,17 +39,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_042705) do
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
   end
 
-  create_table "results", id: false, force: :cascade do |t|
+  create_table "results", id: :serial, force: :cascade do |t|
     t.bigint "college_subject_id", null: false
-    t.bigint "user_id", null: false
     t.datetime "assign_result_date"
     t.decimal "note"
     t.bigint "type_of_result_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "student_id"
     t.index ["college_subject_id"], name: "index_results_on_college_subject_id"
+    t.index ["student_id"], name: "index_results_on_student_id"
     t.index ["type_of_result_id"], name: "index_results_on_type_of_result_id"
-    t.index ["user_id"], name: "index_results_on_user_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "name"
+    t.string "cpf"
+    t.string "registration_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_students_on_course_id"
   end
 
   create_table "type_of_results", force: :cascade do |t|
@@ -60,9 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_042705) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "registration_number"
     t.string "name"
-    t.string "cpf"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -70,13 +78,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_042705) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "course_id"
-    t.index ["course_id"], name: "index_users_on_course_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "college_subjects", "courses"
+  add_foreign_key "results", "students"
   add_foreign_key "results", "type_of_results"
-  add_foreign_key "users", "courses"
+  add_foreign_key "students", "courses"
 end

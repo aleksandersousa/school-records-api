@@ -8,8 +8,14 @@ Rails.application.routes.draw do
   get 'ping' => ->(_) { [200, {}, ['pong']] }
   
   scope '/', defaults: { format: :json } do
-    resources :courses
-    resources :users, only: %i[create update]
     resources :type_of_results, only: %i[index show]
+    resources :courses
+    resources :results
+    resources :college_subjects
+    resources :students do
+      member do
+        get :results
+      end
+    end
   end
 end

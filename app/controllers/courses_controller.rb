@@ -1,9 +1,9 @@
 require 'securerandom'
 
 class CoursesController < ApplicationController
-  # before_action :authenticate_user!, only: %i[update]
+  before_action :authenticate_user!
 
-  before_action :set_course, only: %i[show update]
+  before_action :set_course, only: %i[show update destroy students]
 
   # GET /courses
   def index
@@ -16,6 +16,12 @@ class CoursesController < ApplicationController
     json_response(@course)
   end
 
+  # GET /courses/1/students
+  def students
+    @students = @course.students
+    json_response(@students)
+  end
+
   # POST /courses
   def create
     @course = Course.create!(course_params.merge({ code: SecureRandom.hex(5) }))
@@ -25,6 +31,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   def update
     @course.update(course_params)
+    json_response(@course)
   end
 
   # DELETE /courses/1

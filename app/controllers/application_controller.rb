@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::API
   include Response
   include ExceptionHandler
-  include ActionController::HttpAuthentication::Basic::ControllerMethods
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 

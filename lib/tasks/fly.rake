@@ -13,7 +13,6 @@ namespace :fly do
   task release: :environment do
     sh 'bundle exec rails db:migrate'
     sh 'bin/rake populate_database:create_types_of_results'
-    sh 'bin/rake populate_database:create_courses'
   end
 
   # SERVER step:

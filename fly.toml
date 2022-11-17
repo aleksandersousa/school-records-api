@@ -20,7 +20,7 @@ RAILS_MAX_THREADS = "5"
 WEB_CONCURRENCY = "2"
 
 LOG_LEVEL = "debug"
-DEFAULT_URL_CONSUMER = "https://school-records.vercel.app"
+DEFAULT_URL_CONSUMER = "*"
 
 [experimental]
 allowed_public_ports = []

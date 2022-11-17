@@ -7,7 +7,6 @@ class StudentsController < ApplicationController
   # GET /students
   def index
     @students = Student.all
-    json_response(@students)
   end
 
   # GET /students/1
@@ -23,13 +22,11 @@ class StudentsController < ApplicationController
   # POST /students
   def create
     @student = Student.create!(student_params.merge({ registration_number: SecureRandom.hex(5) }))
-    json_response(@student, :created)
   end
 
   # PATCH/PUT /students/1
   def update
     @student.update(student_params)
-    json_response(@student)
   end
 
   # DELETE /students/1

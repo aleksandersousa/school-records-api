@@ -15,13 +15,11 @@ class ResultsController < ApplicationController
   # POST /results
   def create
     @result = Result.create!(result_params.merge({ assign_result_date: DateTime.now }))
-    json_response(@result, :created)
   end
 
   # PATCH/PUT /results/1
   def update
     @result.update(result_params)
-    json_response(@result)
   end
 
   # PATCH/PUT /results/1

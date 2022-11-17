@@ -15,6 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def register_failed(resource)
-    render json: { errors: resource.errors }
+    render json: { errors: resource.errors }, status: :unauthorized
   end
 end
